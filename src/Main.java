@@ -127,10 +127,11 @@ public class Main {
     // Метод для создания тестового файла
     private static void createTestFile() {
         try {
-            java.io.FileWriter writer = new java.io.FileWriter("test.txt");
-            writer.write("Это тестовый файл.\n");
-            writer.write("Для проверки работы FileAnalyzer.");
-            writer.close();
+
+            try (java.io.FileWriter writer = new java.io.FileWriter("test.txt")) {
+                writer.write("Это тестовый файл.\n");
+                writer.write("Для проверки работы FileAnalyzer.");
+            }
             System.out.println("Создан тестовый файл 'test.txt'");
         } catch (Exception e) {
             System.out.println("Ошибка создания файла: " + e.getMessage());
@@ -156,13 +157,17 @@ public class Main {
 
         private static void createGradesFile() {
             try {
-                java.io.FileWriter writer = new java.io.FileWriter("grades.txt");
-                writer.write("Иванов 5 4 3 5\n");
-                writer.write("Петров 4 4 4\n");
-                writer.write("Сидоров 5 5 5 5\n");
-                writer.write("Кузнецова 3 4 4 5 4\n");
-                writer.write("Смирнов 2 3 4 3\n");
-                writer.close();
+
+                try (java.io.FileWriter writer = new java.io.FileWriter("grades.txt")) {
+
+                    writer.write("Иванов 5 4 3 5\n");
+                    writer.write("Петров 4 4 4\n");
+                    writer.write("Сидоров 5 5 5 5\n");
+                    writer.write("Кузнецова 3 4 4 5 4\n");
+                    writer.write("Смирнов 2 3 4 3\n");
+                    writer.close();
+                }
+
                 System.out.println("Создан файл с оценками 'grades.txt'");
             } catch (Exception e) {
                 System.out.println("Ошибка создания файла с оценками: " + e.getMessage());
